@@ -4,7 +4,6 @@ function gameStates.intro.load()
   intro = {}
   intro.x = 100
   intro.y = 25
-  fnt_mono = love.graphics.newFont('data/fnt_main_mono.oft', 16)
   intro.art = {
     [0] = {
       [1] = nil,
@@ -171,7 +170,7 @@ end
 
 function gameStates.intro.draw()
   --love.graphics.setBackgroundColor(0, 0, 0)
-  love.graphics.setFont(fnt_mono)
+  love.graphics.setFont(fnt_main)
   --love.graphics.print('fade=' .. intro.fade .. 'timer=' .. intro.timer, 5, 10)
   intro.drawArt()
   intro.drawString()

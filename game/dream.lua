@@ -6,32 +6,20 @@ function gameStates.dream.load()
     curRoom = 0,
     fade = 0,
     frameTimer = 0,
-    warp = { goto = 0, spawn = 0, transition = false, },
+    warp = { goto = 0, spawn = 0, transition = false},
     pause = {
       select = 0,
-      [0] = {name = 'ITEM',
-        submenu = { selected = false,
-          type = 'msg',
-          msg = '* Besides an old phone, your pockets are empty.',
+      menu = {
+        [0] = {name = 'ITEM',
+          submenu = {},
+        },
+        [1] = {name = 'STAT',
+          submenu = {},
+        },
+        [2] = {name = 'CELL',
+          submenu = {},
         },
       },
-      [1] = {name = 'STAT',
-        submenu = { selected = false, x = 10, y = 50, w =
-          type = 'window',
-          content = {
-            [0] = { x = 10, y = 10,
-            text = 'Frisk'
-            }
-          }
-        },
-      },
-      [2] = {name = 'CELL',
-        submenu = { selected = false,
-          type = 'msg',
-          msg = '* Looks like the battery is dead.',
-        },
-      },
-    },
     },
     frisk = { x = 170, y = 140, dir = 3, frame = 0, spd = 1.5, hsp = 0, vsp = 0, checked = false,
       spr = {
@@ -227,7 +215,7 @@ function gameStates.dream.draw()
     love.graphics.print("0", 52, 65)
 
     love.graphics.setFont(fnt_main)
-    love.graphics.print(dream.pause[0].name, 50, 101)
+    love.graphics.print("ITEM", 50, 101)
     love.graphics.print("STAT", 50, 119)
     love.graphics.print("CELL", 50, 137)
   end
