@@ -38,13 +38,14 @@ ___
 - <a href="https://www.behance.net/gallery/31378523/Monster-Friend-Undertale-Logo-Font">Monster Friend</a>, which is the font used for LOVE's logo, was made by <a href="https://www.behance.net/JapanYoshi">Harry Wakamatsu</a>.
 
 - All code and any additional graphics that may be added to this project are by me.
+- <a href="https://github.com/Xavyrr">Xavyrr</a> for most of the code and assets used here
 - This project is not affiliated in any way with Toby Fox, please support the offical release: <a href="https://undertale.com/">[LINK]</a>
 
 ___
 
 ###Building LOVE:
 To run LOVE on an actual 3ds, put the game folder in the same directory as the 3dsx from <a href = "https://github.com/videah/LovePotion/releases/tag/v1.0.8-beta">this</a> version of LovePotion and run it from your homebrew entrypoint.
-On Citra, place **the contents** of the game folder in `[CITRA-FOLDER]/users/sdmc` for windows and  `~/.local/share/citra-emu/sdmc` for linux, and run the 3dsx from wherever you please 
+On Citra, place **the contents** of the game folder in `[CITRA-FOLDER]/users/sdmc` for windows and  `~/.local/share/citra-emu/sdmc` for linux, and run the 3dsx from wherever you please
 
 ___
 
