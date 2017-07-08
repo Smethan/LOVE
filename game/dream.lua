@@ -75,10 +75,10 @@ function gameStates.dream.load()
       },
       [2] = {
         bg = love.graphics.newImage('img/dream/room/torielHouse1.png'),
-        x = 90, -- room bg x offset
-        y = 21, -- room bg y offset
-        w = 600, --room width
-        h = 440, -- room height
+        x = 40, -- room bg x offset
+        y = 12, -- room bg y offset
+        w = 310, --room width
+        h = 220, -- room height
         wall = { --easy basic walls to set up
           [0] = 300, -- east x
           [1] = 300, -- north y
@@ -86,13 +86,14 @@ function gameStates.dream.load()
           [3] = 300, -- south y
         },
         warp = { -- total number of warp/doors
-          [0] = {x1 = 240, y1 = 200, x2 = 275, y2 = 215, goto = 1, spawn = 0,}
+          [0] = {x1 = 0, y1 = 0, x2 = 1, y2 = 1, goto = 1, spawn = 0,}
         },
         spawn = { --where you spawn/ arrive from a warp
-          [0] = {x = 257, y = 188, dir = 1},
+          [0] = {x = 332, y = 201, dir = 2},
         },
         object = {
-            [0] = {x1 = 9, y1 = 9, x2 = 10, y2 = 10,},
+            [0] = {x1 = 284, y1 = 80, x2 = 320, y2 = 62,},
+            [1] = {x1 = 81, y1 = 90, x2 =103 , y2 = 65,},
         },
       },
       [1] = {
@@ -159,7 +160,7 @@ function gameStates.dream.load()
     end
   end ]]
   function dream.doCollision(x0, y0, hsp, vsp, curRoom)
-    
+
   end
 
   -- do warp
