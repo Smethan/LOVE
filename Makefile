@@ -43,8 +43,8 @@ JINGLE := meta/jingle.wav
 
 # CIA Options
 
-APP_PRODUCT_CODE := LP-LOVE
-APP_UNIQUE_ID := 0x6169F
+APP_PRODUCT_CODE := CTR-P-LP
+APP_UNIQUE_ID := 0x1043
 APP_SYSTEM_MODE := 64MB
 APP_SYSTEM_MODE_EXT := Legacy
 
@@ -165,6 +165,7 @@ export BUILD_ARGS := \
 all: $(BUILD)
 
 $(BUILD):
+	@echo $(CFILES)
 	@[ -d $@ ] || mkdir -p $@
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
