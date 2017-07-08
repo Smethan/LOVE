@@ -1,125 +1,53 @@
-<p align="center">
-	<img src="http://i.imgur.com/uJQNDys.png"/>
-</p>
+![#LOVE](../master/meta/banner.png)
 
-<p align="center">
-	<img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square"/>
-	<img src="https://img.shields.io/github/stars/VideahGams/LovePotion.svg?style=flat-square"/>
-	<img src="https://img.shields.io/github/forks/VideahGams/LovePotion.svg?style=flat-square"/>
-	<img src="https://img.shields.io/github/issues/VideahGams/LovePotion.svg?style=flat-square"/>
-	<img src="https://img.shields.io/travis/VideahGams/LovePotion.svg?style=flat-square"/>
-</p>
+###About:
 
-**LövePotion** is an unofficial work in progress implementation of the [LÖVE](https://love2d.org/) API for 3DS Homebrew.
+LOVE is an Undertale homebrew currently being written for the Nintendo 3DS system with use of <a href="https://github.com/VideahGams/LovePotion">LövePotion</a>, an unofficial implementation of the Löve API for the 3DS by <a href="https://github.com/VideahGams">VideahGams</a>. The intent of this homebrew is to provide an Undertale related experience without touching the actual game, since depending on how you played it, you might not want to delete your save file. However this is not meant to replace Undertale in any way, and you should purchase the original game.
+___
 
-<p align="center">
-	<img src="https://i.imgur.com/wsIfDuF.png"/>
-*</p>
+###Licensing:
 
-Go [here](https://github.com/VideahGams/LovePotion/releases) for semi-stable releases. Join `#lovepotion` on OFTC for help/discussion/chat etc.
+LOVE is licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.
 
-# FAQ
+Undertale is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)</a>:
+>####You are free:
+>
+> - to Share — to copy, distribute and transmit the work.
+> - to Remix — to adapt the work.
+>####Under the following conditions:
+>
+>- Attribution — You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your >use of the work).
+>- Noncommercial — You may not use this work for commercial purposes.
+>- Share Alike — If you alter, transform, or build upon this work, you may distribute the resulting work only under the same, similar or a compatible license.
 
-#### Can I run my LÖVE game on this?
+>####With the understanding that:
+>
+> 1. Waiver — Any of the above conditions can be waived if you get permission from the copyright holder.
+> 2. Other Rights — In no way are any of the following rights affected by the license:
 
-Running your game without any changes is very unlikely, so it's recommended to currently use LövePotion to make games from the ground up.
+> - Your fair dealing or fair use rights;
 
+> - The author's moral rights;
 
-#### Can I help?
+> - Rights other persons may have either in the work itself or in how the work is used, such as publicity or privacy rights.
+___
 
-Yes, see the [CONTRIBUTING.md](https://www.github.com/VideahGams/LovePotion/tree/master/CONTRIBUTING.md) for more details.
+###Credit & Copyright:
+- The "Undertale" name, graphics, audio, characters, setting from the game are © Toby Fox. Thanks for making such a wonderful game.
 
-#### How do I build this?
+- <a href="https://www.behance.net/gallery/31378523/Monster-Friend-Undertale-Logo-Font">Monster Friend</a>, which is the font used for LOVE's logo, was made by <a href="https://www.behance.net/JapanYoshi">Harry Wakamatsu</a>.
 
-Follow [this](https://github.com/VideahGams/LovePotion/wiki/Building-L%C3%96VEPotion) guide, building should work on
-Linux, Windows and macOS if setup properly.
+- All code and any additional graphics that may be added to this project are by me.
+- This project is not affiliated in any way with Toby Fox, please support the offical release: <a href="https://undertale.com/">[LINK]</a>
 
-#### How do I load my game?
-Games are loaded either from a `game` folder placed in the same directory as a built 3dsx, or
-loaded directly from RomFS if LövePotion is built with a `game` folder in its directory.
+___
 
-#### How do I run this?
+###Building LOVE:
+To run LOVE on an actual 3ds, put the game folder in the same directory as the 3dsx from <a href = "https://github.com/videah/LovePotion/releases/tag/v1.0.8-beta">this</a> version of LovePotion and run it from your homebrew entrypoint.
+On Citra, place **the contents** of the game folder in `[CITRA-FOLDER]/users/sdmc` for windows and  `~/.local/share/citra-emu/sdmc` for linux, and run the 3dsx from wherever you please 
 
-There are a ton of ways to run LövePotion.
-[Start here!](http://smealum.github.io/3ds/)
+___
 
-**LövePotion** is developed using [Citra](http://citra-emu.org/) and [MenuHax](http://smealum.github.io/3ds/).
-
-There are also other ways, but I know next to nothing of these methods.
-
-To run your game in Citra, place your game folder in these locations:
-
-| Platform | Path                            |
-|----------|---------------------------------|
-| Linux    | `~/.local/share/citra-emu/sdmc` |
-| Windows  | `[CITRA-FOLDER]/users/sdmc`     |
-
-#### Neat! I'm gonna send my game to Nintendo and get cartridge of my game and I'l-
-
-Stop right there kiddo, this is for Homebrew only.
-
-This is not for releasing a real 3DS title. I dunno, contact Nintendo if that's what you want.
-
-#### Can I use this to run Mari0?
-No.
-
-# Showcase
- * [Picroxx!](https://gbatemp.net/threads/picroxx-the-ultimate-picross-clone.412055) by Substance12
- * [Space Shooter Game](http://novaember.com/s/8f9453/FIrGGQ.mp4) by Darkwater
- * [Ludum Dare 33 Entry](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=31436) by me
- * [NumberFucker3DS](https://github.com/VideahGams/NumberFucker3DS) by unek & me
- * [SpaceFruit](https://gbatemp.net/threads/release-space-fruit.399088/) by TurtleP
- * [Loophole](https://gbatemp.net/threads/release-loophole-3ds-port.399585/) by Aaron Butterworth & CKlidify
- * [Hax0r](https://gbatemp.net/threads/preview-hax0r.401707) by TurtleP
- * [Idiot](https://gbatemp.net/threads/preview-idiot-a-puzzle-platformer.408774) by TurtleP
- * [ravimid](https://hoksy.itch.io/ravimid) by hoksy "raisin bran" jp
- * [Jetski 3DS](https://github.com/miltoncandelero/JETSKI-3DS/releases/tag/Potato-Version) by miltoncandelero
- 
-Send me your projects so I can showcase them here!
-
-# Dependencies
-The following dependencies are required to be installed properly in your dev environment for LovePotion to build.
- * [3ds_portlibs](https://github.com/cpp3ds/3ds_portlibs)
- * [citro3d](https://github.com/fincs/citro3d)
- * [sf2dlib](https://github.com/xerpi/sf2dlib)
- * [sftdlib](https://github.com/xerpi/sftdlib)
- * [sfillib](https://github.com/xerpi/sfillib)
-
-# Credits
-
- * Smealum and everyone who worked on [ctrulib](https://github.com/smealum/ctrulib) and ~~[Ninjhax](http://smealum.net/ninjhax)~~ all the Hax!
- * xerpi for [sf2dlib](https://github.com/xerpi/sf2dlib) and [sftdlib](https://github.com/xerpi/sftdlib) and [sfillib](https://githubcom/xerpi/sfillib)
- * Everyone who worked on [lua-compat-5.2](https://github.com/keplerproject/lua-compat-5.2)
- * Everyone who has worked on [Citra](http://citra-emu.org/)
- * Everyone who worked on [DevKitARM](http://devkitpro.org/)
- * rxi for [lovedos](https://github.com/rxi/lovedos) which has been good learning material (I also used his luaobj util)
- * Firew0lf, Reuh, Negi and everyone else who worked on [ctruLua](https://github.com/Firew0lf/ctruLua)
- * TurtleP for help/advice and being my best customer
- * Mik Embley for his contributions
- * All of the LÖVE community, for being awesome
- * Anyone that I forgot
- 
-
-# License
-
-This code is licensed under the MIT Open Source License.
-
-Copyright (c) 2015-2016 Ruairidh Carmichael - ruairidhcarmichael@live.co.uk
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+###Other Links:
+GBAtemp Forum Thread: <a href="https://gbatemp.net/threads/wip-love-a-visual-homebrew-for-fallen-humans.420076/page-3#post-6706194">[LINK]</a>
+Old GitHub Repo: <a href="https://github.com/Xavyrr/LOVE-OLD-">[LINK]</a>
