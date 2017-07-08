@@ -73,6 +73,28 @@ function gameStates.dream.load()
           [2] = {x1 = 116, y1 = 195, x2 = 241, y2 = 215,},
         },
       },
+      [2] = {
+        bg = love.graphics.newImage('img/dream/room/torielHouse1.png'),
+        x = 90, -- room bg x offset
+        y = 21, -- room bg y offset
+        w = 600, --room width
+        h = 440, -- room height
+        wall = { --easy basic walls to set up
+          [0] = 300, -- east x
+          [1] = 300, -- north y
+          [2] = 300, -- west x
+          [3] = 300, -- south y
+        },
+        warp = { -- total number of warp/doors
+          [0] = {x1 = 240, y1 = 200, x2 = 275, y2 = 215, goto = 1, spawn = 0,}
+        },
+        spawn = { --where you spawn/ arrive from a warp
+          [0] = {x = 257, y = 188, dir = 1},
+        },
+        object = {
+            [0] = {x1 = 9, y1 = 9, x2 = 10, y2 = 10,},
+        },
+      },
       [1] = {
         bg = love.graphics.newImage('img/dream/room/1.png'),
         x = 0,
@@ -87,6 +109,7 @@ function gameStates.dream.load()
         },
         warp = { -- total number of warp/doors
           [0] = {x1 = 158, y1 = 105, x2 = 182, y2 = 116, goto = 0, spawn = 0,},
+          [1] = {x1 = 0.5, y1 = 121.5, x2 = 10, y2 = 168, goto = 2, spawn = 0,},
         },
         spawn = { --where you spawn/ arrive from a warp
           [0] = {x = 170, y = 126, dir = 3,},
@@ -113,7 +136,8 @@ function gameStates.dream.load()
       },
     },
   }
-  function dream.doCollision(x0, y0, hsp, vsp, curRoom)
+--[[  function dream.doCollision(x0, y0, hsp, vsp, curRoom)
+    if love.keyboard.isDown('x') then end
     --make local vars
     local x1 = x0 + hsp
     local y1 = y0 + vsp
@@ -133,6 +157,9 @@ function gameStates.dream.load()
       end
       if dream.room[curRoom].object[i+1] == nil then break end
     end
+  end ]]
+  function dream.doCollision(x0, y0, hsp, vsp, curRoom)
+    
   end
 
   -- do warp
@@ -194,6 +221,12 @@ function gameStates.dream.draw()
   else
     love.graphics.draw(dream.frisk.spr.normal[dream.frisk.dir][dream.frisk.frame], dream.frisk.x - 9, dream.frisk.y - 26)
   end
+  --while dream.state == 'normal' do
+    --love.graphics.setFont(fnt_small)
+    --love.graphics.setDepth(-3)
+    --love.graphics.print(dream.frisk.x, 35, 18)
+    --love.graphics.print(dream.frisk.y, 35, 28)
+  --end
   if dream.state == 'warp' then -- draw black screen fade
     love.graphics.setColor(0, 0, 0, dream.fade)
     love.graphics.rectangle('fill', -5, -5, 405, 245)
@@ -210,8 +243,8 @@ function gameStates.dream.draw()
     love.graphics.print("LV", 35, 47)
     love.graphics.print("HP", 35, 56)
     love.graphics.print("G", 35, 65)
-    love.graphics.print("1", 52, 47)
-    love.graphics.print("20/20", 52, 56)
+    love.graphics.print(dream.frisk.x, 52, 47)
+    love.graphics.print(dream.frisk.y, 52, 56)
     love.graphics.print("0", 52, 65)
 
     love.graphics.setFont(fnt_main)
