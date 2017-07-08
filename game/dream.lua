@@ -21,7 +21,7 @@ function gameStates.dream.load()
         },
       },
     },
-    frisk = { x = 170, y = 140, dir = 3, frame = 0, spd = 1.5, hsp = 0, vsp = 0, checked = false,
+    frisk = { x = 170, y = 140, w = 10, h = 15 ,dir = 3, frame = 0, spd = 1.5, hsp = 0, vsp = 0, checked = false,
       spr = {
         normal = {
           [0] = {
@@ -55,11 +55,15 @@ function gameStates.dream.load()
         y = 21, -- room bg y offset
         w = 400, --room width
         h = 240, -- room height
-        wall = { --easy basic walls to set up
-          [0] = 273, -- east x
-          [1] = 100, -- north y
-          [2] = 120, -- west x
-          [3] = 272, -- south y
+        vert = 4,
+        wall = { {112,80},{285,80},{285,194},{112,194}
+          -- [0] = {x = 112,y = 80,},
+          -- [1] = {x= 285,y = 80,},
+          -- [2] = {x = 285, y = 194,},
+          -- [3] = {x = 112, y = 194,}, -- east x
+          --[1] = 100, -- north y
+          --[2] = 120, -- west x
+          --[3] = 272, -- south y
         },
         warp = { -- total number of warp/doors
           [0] = {x1 = 240, y1 = 200, x2 = 275, y2 = 215, goto = 1, spawn = 0,}
@@ -80,10 +84,10 @@ function gameStates.dream.load()
         w = 310, --room width
         h = 220, -- room height
         wall = { --easy basic walls to set up
-          [0] = 300, -- east x
-          [1] = 300, -- north y
-          [2] = 300, -- west x
-          [3] = 300, -- south y
+          [0] = {x = 323, y = 157, w = 30, h = 0,},-- east x
+          --[1] = {}, -- east 2
+        --  [2] = {}, -- east 3
+          --[3] = {}, -- east 4
         },
         warp = { -- total number of warp/doors
           [0] = {x1 = 0, y1 = 0, x2 = 1, y2 = 1, goto = 1, spawn = 0,}
@@ -103,10 +107,10 @@ function gameStates.dream.load()
         w = 400,
         h = 240,
         wall = { --easy basic walls to set up
-          [0] = 400, -- east x
-          [1] = 104, -- north y
-          [2] = 0 , -- west x
-          [3] = 169, -- south y
+        [0] = {x = 350, y = 157, w = 0, h = 10,}, -- east x
+        --[1] = 104, -- north y
+        --[2] = 0 , -- west x
+        --[3] = 169, -- south y
         },
         warp = { -- total number of warp/doors
           [0] = {x1 = 158, y1 = 105, x2 = 182, y2 = 116, goto = 0, spawn = 0,},
@@ -159,8 +163,84 @@ function gameStates.dream.load()
       if dream.room[curRoom].object[i+1] == nil then break end
     end
   end ]]
-  function dream.doCollision(x0, y0, hsp, vsp, curRoom)
+function dream.CheckHorizontalCollision(x1,w1, x2,w2)
+  return x1 < x2+w2 and
+         x2 < x1+w1
 
+end
+function dream.CheckVerticalCollision(y1,h1, y2,h2)
+return y1 < y2+h2 and
+       y2 < y1+h1
+
+end
+
+function dream.pointInside(x, y, poly)
+  	-- poly is like { {x1,y1},{x2,y2} .. {xn,yn}}
+  	-- x,y is the point
+  	local inside = false
+  	local p1x = poly[1][1]
+  	local p1y = poly[1][2]
+
+  	for i=0,#poly do
+
+  		local p2x = poly[((i)%#poly)+1][1]
+  		local p2y = poly[((i)%#poly)+1][2]
+
+  		if y > math.min(p1y,p2y) then
+  			if y <= math.max(p1y,p2y) then
+  				if x <= math.max(p1x,p2x) then
+  					if p1y ~= p2y then
+  						xinters = (y-p1y)*(p2x-p1x)/(p2y-p1y)+p1x
+  					end
+  					if p1x == p2x or x <= xinters then
+  						inside = not inside
+  					end
+  				end
+  			end
+  		end
+  		p1x,p1y = p2x,p2y
+  	end
+  	return inside
+  end
+-- function dream.isInside(curRoom, fposx, fposy)
+--   local vertices = dream.room[curRoom].vert
+--   local walls = dream.room[curRoom].wall
+--   local j = vertices - 1
+--   local c = true
+--   for i = 0, j, 1 do
+--     if ((walls[i].y > fposy) ~= (walls[j].y > fposy)) and (fposx < (walls[j].x - walls[i].x) * (fposy - walls[i].y) / (walls[j].y - walls[i].y + walls[i].x)) then
+--       c = not c
+--     end
+--   end
+--   return c
+-- end
+
+  function dream.doCollision(x0, y0, h0, w0, hsp, vsp, curRoom)
+    --make local vars
+    local x1 = x0 + hsp
+    local y1 = y0 + vsp
+    local h1 = h0
+    local w1 = w0
+    --wall collision
+    for i = 0, 50, 1 do
+      if hsp == 0 and vsp == 0 then break end
+      if dream.pointInside(x1, y1, dream.room[curRoom].wall) == false then
+        dream.frisk.hsp = 0
+        dream.frisk.vsp = 0
+      end
+      if dream.room[curRoom].wall[i + 1] == nil then break end
+    end
+    --object collision
+    for  i = 0, 30, 1 do
+      if hsp == 0 and vsp == 0 then break end --skip collision if you aren't moving (stopped by wall collision)
+      if x1 > dream.room[curRoom].object[i].x1 and x1 < dream.room[curRoom].object[i].x2 and y0 > dream.room[curRoom].object[i].y1 and y0 < dream.room[curRoom].object[i].y2 then
+        dream.frisk.hsp = 0
+      end
+      if x0 > dream.room[curRoom].object[i].x1 and x0 < dream.room[curRoom].object[i].x2 and y1 > dream.room[curRoom].object[i].y1 and y1 <                   dream.room[curRoom].object[i].y2 then
+        dream.frisk.vsp = 0
+      end
+      if dream.room[curRoom].object[i+1] == nil then break end
+    end
   end
 
   -- do warp
@@ -241,8 +321,8 @@ function gameStates.dream.draw()
     love.graphics.print("Frisk", 35, 28)
     love.graphics.setDepth(-2)
     love.graphics.setFont(fnt_small)
-    love.graphics.print("LV", 35, 47)
-    love.graphics.print("HP", 35, 56)
+    love.graphics.print("X", 35, 47)
+    love.graphics.print("Y", 35, 56)
     love.graphics.print("G", 35, 65)
     love.graphics.print(dream.frisk.x, 52, 47)
     love.graphics.print(dream.frisk.y, 52, 56)
@@ -321,7 +401,7 @@ function gameStates.dream.update(gt)
     if mkey[0] ~= nil then dream.frisk.dir = mkey[0] end -- set direction
     -- check warp and collision
     dream.checkWarp(dream.frisk.x, dream.frisk.y)
-    dream.doCollision(dream.frisk.x, dream.frisk.y, dream.frisk.hsp, dream.frisk.vsp, dream.curRoom)
+    dream.doCollision(dream.frisk.x, dream.frisk.y, dream.frisk.h, dream.frisk.w, dream.frisk.hsp, dream.frisk.vsp, dream.curRoom)
     -- do movement and frame timer
     if dream.frisk.vsp ~= 0 or dream.frisk.hsp ~= 0 then
       dream.frisk.x = dream.frisk.x + dream.frisk.hsp
