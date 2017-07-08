@@ -13,6 +13,3 @@
 *.elf
 *.3ds
 *.bin
-game/dream.lua
-game/intro.lua
-Makefile
