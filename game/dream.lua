@@ -56,14 +56,7 @@ function gameStates.dream.load()
         w = 400, --room width
         h = 240, -- room height
         vert = 4,
-        wall = { {112,80},{285,80},{285,194},{112,194}
-          -- [0] = {x = 112,y = 80,},
-          -- [1] = {x= 285,y = 80,},
-          -- [2] = {x = 285, y = 194,},
-          -- [3] = {x = 112, y = 194,}, -- east x
-          --[1] = 100, -- north y
-          --[2] = 120, -- west x
-          --[3] = 272, -- south y
+        wall = { {112,80},{285,80},{285,194},{112,194},{236,198},{279,198},{279, 216},{236,216}, -- array containing vertices of room
         },
         warp = { -- total number of warp/doors
           [0] = {x1 = 240, y1 = 200, x2 = 275, y2 = 215, goto = 1, spawn = 0,}
@@ -84,7 +77,8 @@ function gameStates.dream.load()
         w = 310, --room width
         h = 220, -- room height
         wall = { --easy basic walls to set up
-          [0] = {x = 323, y = 157, w = 30, h = 0,},-- east x
+          [0] = {
+          },-- east x
           --[1] = {}, -- east 2
         --  [2] = {}, -- east 3
           --[3] = {}, -- east 4
@@ -107,7 +101,8 @@ function gameStates.dream.load()
         w = 400,
         h = 240,
         wall = { --easy basic walls to set up
-        [0] = {x = 350, y = 157, w = 0, h = 10,}, -- east x
+        [0] = {{0,112},{0,172},{260,172},{260,112}
+        }, -- east x
         --[1] = 104, -- north y
         --[2] = 0 , -- west x
         --[3] = 169, -- south y
@@ -163,16 +158,6 @@ function gameStates.dream.load()
       if dream.room[curRoom].object[i+1] == nil then break end
     end
   end ]]
-function dream.CheckHorizontalCollision(x1,w1, x2,w2)
-  return x1 < x2+w2 and
-         x2 < x1+w1
-
-end
-function dream.CheckVerticalCollision(y1,h1, y2,h2)
-return y1 < y2+h2 and
-       y2 < y1+h1
-
-end
 
 function dream.pointInside(x, y, poly)
   	-- poly is like { {x1,y1},{x2,y2} .. {xn,yn}}
@@ -202,20 +187,9 @@ function dream.pointInside(x, y, poly)
   	end
   	return inside
   end
--- function dream.isInside(curRoom, fposx, fposy)
---   local vertices = dream.room[curRoom].vert
---   local walls = dream.room[curRoom].wall
---   local j = vertices - 1
---   local c = true
---   for i = 0, j, 1 do
---     if ((walls[i].y > fposy) ~= (walls[j].y > fposy)) and (fposx < (walls[j].x - walls[i].x) * (fposy - walls[i].y) / (walls[j].y - walls[i].y + walls[i].x)) then
---       c = not c
---     end
---   end
---   return c
--- end
 
-  function dream.doCollision(x0, y0, h0, w0, hsp, vsp, curRoom)
+
+  --[[function dream.doCollision(x0, y0, h0, w0, hsp, vsp, curRoom)
     --make local vars
     local x1 = x0 + hsp
     local y1 = y0 + vsp
@@ -242,7 +216,10 @@ function dream.pointInside(x, y, poly)
       if dream.room[curRoom].object[i+1] == nil then break end
     end
   end
-
+]]
+function dream.doCollision(x0, y0, h0, w0, hsp, vsp, curRoom)
+  --collision for debugging
+end
   -- do warp
   function dream.doWarp(room, spawn)
     dream.curRoom = room
